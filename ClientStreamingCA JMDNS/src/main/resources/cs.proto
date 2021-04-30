@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_package = "clientStreamingCA";
+option java_multiple_files = true;
+
+
+service AskForCert{
+// new service
+
+// client streaming
+// each service has a Request and a Response
+rpc DoCert(stream CRequest) returns (CResponse){};
+
+}// end of service
+ 
+ message CRequest{
+ 
+ // request from client side
+ //the client will send this message more than once to the server
+  string course = 1;
+ } 
+ message CResponse{
+ 
+ // request from the server side
+ // the server will send just one message once
+ string confirmation = 1;
+ }
